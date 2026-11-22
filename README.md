@@ -1,1 +1,0 @@
-# Discovering-the-World-of-Right-Triangles
