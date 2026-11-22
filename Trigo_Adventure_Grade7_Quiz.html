@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trigo Adventure Quiz</title>
+<style>
+body{margin:0;background:#f4f7fa;color:#263746;font:16px Arial,sans-serif;line-height:1.5}header{background:linear-gradient(120deg,#17324d,#246b9e);color:white;text-align:center;padding:28px 15px}main{max-width:820px;margin:22px auto;padding:0 14px}.panel{background:white;padding:20px;border-radius:14px;margin:16px 0;box-shadow:0 3px 12px #17324d12}h2{color:#17324d}.note{background:#e2f3ef;padding:12px;border-left:5px solid #269889;border-radius:7px}.q{border:1px solid #d9e3eb;border-radius:10px;padding:14px;margin:13px 0}.q label{display:block;padding:6px;cursor:pointer}button{background:#246b9e;color:white;border:0;border-radius:8px;padding:11px 17px;font-weight:bold;font-size:1rem;margin:7px 5px 0 0;cursor:pointer}button.alt{background:#e8eef3;color:#17324d}.fb{font-weight:bold;margin-top:7px}.ok{color:#14734a}.no{color:#a43b32}#result{display:none;background:#e2f3ef;border-radius:10px;padding:16px;margin-top:16px}.score{font-size:1.35rem;font-weight:bold;color:#17324d}.small{font-size:.9rem;color:#5c6e7d}footer{text-align:center;color:#6c7b88;padding:20px}
+</style></head><body>
+<header><h1>📐 TRIGO ADVENTURE</h1><p>Final Assessment • Introduction to Trigonometry • Grade 7</p></header>
+<main><section class="panel"><h2>Directions</h2><p>Read each question carefully. Choose the best answer, then click <b>Submit Quiz</b> to see your score and feedback.</p><div class="note"><b>Target:</b> Try to get at least 8 correct answers out of 10. Review the feedback and try again if needed.</div><p class="small">Introductory/enrichment activity building on prior learning about triangles, angles, and ratios.</p></section>
+<section class="panel"><h2>10-Item Multiple-Choice Quiz</h2><form id="quiz"><div id="items"></div><button type="button" onclick="grade()">Submit Quiz</button><button class="alt" type="button" onclick="resetQuiz()">Try Again</button></form><div id="result" aria-live="polite"><div class="score" id="score"></div><p id="message"></p></div></section></main><footer>TRIGO ADVENTURE • Learn, Explore, Solve!</footer>
+<script>
+const data=[
+["A right triangle has how many angles that measure exactly 90°?",["One","Two","Three"],0,"A right triangle has exactly one right angle measuring 90°."],
+["Which side is opposite the 90° angle?",["Adjacent side","Hypotenuse","Opposite side"],1,"The hypotenuse is always opposite the right angle."],
+["Which statement about the hypotenuse is correct?",["It is always the longest side.","It is always the shortest side.","It changes when angle θ changes."],0,"The hypotenuse is always the longest side and does not change when you select a different acute angle."],
+["In SOH, what does the letter O represent?",["Opposite","Obtuse","Origin"],0,"SOH means Sine = Opposite ÷ Hypotenuse."],
+["Which ratio is adjacent over hypotenuse?",["Sine","Cosine","Tangent"],1,"CAH means Cosine = Adjacent ÷ Hypotenuse."],
+["Which ratio is opposite over adjacent?",["Tangent","Cosine","Sine"],0,"TOA means Tangent = Opposite ÷ Adjacent."],
+["From a selected angle θ, the side directly across from that angle is called the…",["Adjacent side","Hypotenuse","Opposite side"],2,"The opposite side is directly across from the selected angle θ."],
+["In a 3–4–5 triangle, if opposite = 3 and hypotenuse = 5, what is sin θ?",["4/5","3/5","3/4"],1,"Sine = Opposite ÷ Hypotenuse = 3/5 = 0.6."],
+["In a 3–4–5 triangle, if adjacent = 4 and hypotenuse = 5, what is cos θ?",["4/5","3/5","5/4"],0,"Cosine = Adjacent ÷ Hypotenuse = 4/5 = 0.8."],
+["A ladder leaning against a wall and touching the ground can form which shape?",["A circle","A right triangle","A rectangle"],1,"The wall and ground meet at a right angle, and the ladder forms the sloping side of a right-triangle model."]
+];
+const root=document.getElementById("items");
+data.forEach((q,i)=>{let d=document.createElement("div");d.className="q";let title=document.createElement("b");title.textContent=(i+1)+". "+q[0];d.appendChild(title);q[1].forEach((a,j)=>{let l=document.createElement("label"),r=document.createElement("input");r.type="radio";r.name="q"+i;r.value=j;l.appendChild(r);l.appendChild(document.createTextNode(a));d.appendChild(l)});let f=document.createElement("div");f.className="fb";f.id="f"+i;d.appendChild(f);root.appendChild(d)});
+function grade(){let n=0;data.forEach((q,i)=>{let a=document.querySelector('input[name="q'+i+'"]:checked'),f=document.getElementById("f"+i);if(a&&+a.value===q[2]){n++;f.textContent="Correct! "+q[3];f.className="fb ok"}else{f.textContent=(a?"Not quite. ":"Not answered. ")+q[3];f.className="fb no"}});document.getElementById("score").textContent="Your score: "+n+" / 10";document.getElementById("message").textContent=n>=8?"Excellent work! You achieved the target.":"Keep practising! Review the triangle sides and SOH–CAH–TOA, then try again.";document.getElementById("result").style.display="block";document.getElementById("result").scrollIntoView({behavior:"smooth"})}
+function resetQuiz(){document.getElementById("quiz").reset();data.forEach((q,i)=>{let f=document.getElementById("f"+i);f.textContent="";f.className="fb"});document.getElementById("result").style.display="none";window.scrollTo({top:0,behavior:"smooth"})}
+</script></body></html>
